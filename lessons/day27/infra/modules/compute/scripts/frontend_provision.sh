@@ -7,6 +7,16 @@ if [ "$(id -u)" -ne 0 ]; then
   exec sudo "$0" "$@"
 fi
 
+# Priviously this script has not these below variables defined
+# Access template variables 
+# Note: these come from the template_file resource in main.tf
+application_port="${application_port}"
+full_image_name="${full_image_name}"
+dockerhub_username="${dockerhub_username}"
+dockerhub_password="${dockerhub_password}"
+backend_lb_ip="${backend_lb_ip}"
+
+
 # Install necessary packages
 apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https ca-certificates curl software-properties-common dnsutils
